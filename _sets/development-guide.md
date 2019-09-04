@@ -1,0 +1,8 @@
+---
+title: Development guide
+description: Learn about the Exokit API and what you can do with it.
+color: "#801CFF"
+accent_color: "#801CFF"
+order: 5
+img: development-guide.svg
+---

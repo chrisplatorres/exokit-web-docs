@@ -1,0 +1,120 @@
+# ----
+# Site
+
+title: Exokit
+url: "https://exokit.org"
+? baseurl
+#google_analytics_key: UA-63691338-8
+? disqus_shortname
+? newsletter_action
+# segment_write_key: ZHLrnVct1IQCx7yLeOzxSic7G1Duy0HH
+
+twitter_url: "https://twitter.com/exokitxr"
+discord_url: "https://discord.gg/SVdcaZ3"
+github_url: "https://github.com/modulesio/Exokit-docs"
+sdk_url: "https://docs.exokit.org/"
+reddit_url: "https://reddit.com/r/webvr"
+fb_url: "https://www.facebook.com/exokitXR/"
+faq_url: "https://docs.exokit.org/"
+telegram_url: "https://docs.exokit.org/"
+youtube_url: "https://www.youtube.com/channel/UC87Q7_5ooY8FSLwOec52ZPQ"
+legal_url:  'https://docs.exokit.org/'
+press_url: 'https://docs.exokit.org/'
+
+# Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
+logo: /images/favicon.png
+description: Exokit Documentation
+author:
+  name: Exokit
+  email: hello@webmr.io
+  twitter: exokitxr
+social:
+  name: Exokit Documentation
+  links:
+    - https://github.com/modulesio/Exokit-docs
+
+markdown: kramdown
+
+# More › http://kramdown.gettalong.org/quickref.html
+# Options › http://kramdown.gettalong.org/options.html
+kramdown:
+  input: GFM
+  # https://github.com/jekyll/jekyll/pull/4090
+  syntax_highlighter: rouge
+
+  # Rouge Highlighter in Kramdown › http://kramdown.gettalong.org/syntax_highlighter/rouge.html
+  # span, block element options fall back to global
+  syntax_highlighter_opts:
+    # Rouge Options › https://github.com/jneen/rouge#full-options
+    css_class: "light-theme"
+    #line_numbers: true # bad idea, spans don't need linenos and would inherit this option
+    span:
+      line_numbers: false
+    block:
+      line_numbers: false
+      start_line: 1
+
+# -----
+# Build
+
+timezone: Etc/UTC
+
+permalink: /:categories/:title/
+
+plugins:
+  - jekyll-extract-element
+  - jekyll-sitemap
+  - jekyll-seo-tag
+  - jekyll-feed
+  - jekyll-redirect-from
+
+whitelist:
+  - jekyll-redirect-from
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - LICENCE
+  - vendor
+
+collections:
+  ? sets
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+      image: "/images/favicon.png"
+  - scope:
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      type: "sets"
+    values:
+      _hide_content: true
+  - scope:
+      path: "index.html"
+    values:
+      body_class: "show_hero_search"
+
+social_icons:
+  - Facebook
+  - Google Plus
+  - Instagram
+  - LinkedIn
+  - Github
+  - Pinterest
+  - Tumblr
+  - Twitter
+  - YouTube
+  - Email
+  - RSS
+
+types:
+  - Document
+  - Video
+
+? _comments
