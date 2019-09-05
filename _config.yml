@@ -11,7 +11,7 @@ url: "https://exokit.org"
 
 twitter_url: "https://twitter.com/exokitxr"
 discord_url: "https://discord.gg/SVdcaZ3"
-github_url: "https://github.com/modulesio/Exokit-docs"
+github_url: "https://github.com/exokitxr/exokit-web-docs"
 sdk_url: "https://docs.exokit.org/"
 reddit_url: "https://reddit.com/r/webvr"
 fb_url: "https://www.facebook.com/exokitXR/"
@@ -31,7 +31,7 @@ author:
 social:
   name: Exokit Documentation
   links:
-    - https://github.com/modulesio/Exokit-docs
+    - https://github.com/exokitxr/exokit-web-docs
 
 markdown: kramdown
 
