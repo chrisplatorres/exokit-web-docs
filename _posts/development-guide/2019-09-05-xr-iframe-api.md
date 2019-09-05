@@ -24,7 +24,7 @@ Create the top-level `xr-scene`, which is the parent that holds all of the `xr-i
   });
 ```
 
-Top level XR entry:
+Top-level XR entry button:
 
 ```js
 const enterXrButton = document.getElementById('enter-xr-button');
@@ -48,7 +48,7 @@ Manipulate the `xr-iframe` attributes: `position`, `orientation` and `scale`:
 
 ## Child xr-iframe creation
 
-Create WebGL renderer and define layers:
+Create a WebGL renderer and define layers:
 
 ```js
   const renderer = new THREE.WebGLRenderer({
@@ -94,7 +94,7 @@ const _enterXr = async () => {
 };
 ```
 
-Create xr-iframe, define src attribute, and push to layers:
+Create an `xr-iframe`, define the `src` attribute, and push to `layers`:
 
 ```js
   xrIframe = document.createElement('xr-iframe');
