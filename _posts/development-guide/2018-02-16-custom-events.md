@@ -11,7 +11,7 @@ set_order: 16
 
 Sometimes it's useful to decouple the different parts of your scene's code and make them interact with each other via sending events.
 
- scenes handle some [default events](({{ site.baseurl }}{% post_url /development-guide/2018-02-14-click-events %})) like `click` events and `buttonDown` or `buttonUp` events, but you can create your own to handle things that are specific to your scene.
+ scenes handle some like `click` events and `buttonDown` or `buttonUp` events, but you can create your own to handle things that are specific to your scene.
 
 For example, you could have a `pickedCoin` event that's emitted every time the user picks up a coin in your scene. You could then have a score board that listens for these events and updates the score accordingly. Thanks to this, the part of your code that handles the picking of coins doesn't need to have any reference to the part of the code that updates the scoreboard.
 
