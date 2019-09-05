@@ -12,7 +12,7 @@ This page will cover how to create and manipulate reality tabs (`xr-iframe`).
 
 ## Top-level creation
 
-Create the top-level `xr-scene', which is the parent that holds all of the `xr-iframes`.
+Create the top-level `xr-scene`, which is the parent that holds all of the `xr-iframes`.
 ```js
   // Import exokit-web
   import('https://web.exokit.org/src/index.js')
