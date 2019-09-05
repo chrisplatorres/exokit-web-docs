@@ -25,7 +25,7 @@ This page will cover how to create and manipulate reality tabs (`xr-iframe`).
 ## xr-iframe manipulation
 
 ```js
-  // Set xr-iframe position
+  // Set xr-iframe position, from any array
   xrIframe.position = [1, 1, 1];
   // Set xr-iframe orientation
   xrIframe.orientation = new THREE.Quaternion().setFromEuler(new THREE.Euler(1, 1, 1, 'YXZ')).toArray();
