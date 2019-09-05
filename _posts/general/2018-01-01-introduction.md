@@ -7,7 +7,7 @@ redirect_from:
   - /docs
   - /docs/
 categories:
-  - General
+  - Exokit
 type: Document
 set: general
 set_order: 0
