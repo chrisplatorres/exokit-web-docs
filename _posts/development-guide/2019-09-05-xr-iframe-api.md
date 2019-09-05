@@ -22,6 +22,14 @@ This page will cover how to create and manipulate reality tabs (`xr-iframe`).
   });
 ```
 
+Top level XR entry:
+```js
+const enterXrButton = document.getElementById('enter-xr-button');
+enterXrButton.addEventListener('click', () => {
+  xrIframe.enterXr();
+});
+```
+
 ## xr-iframe manipulation
 
 ```js
