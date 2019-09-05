@@ -11,26 +11,31 @@ set_order: 21
 This page will cover how to create and manipulate reality tabs (`xr-iframe`).
 
 ## Top-level creation
+
+Create the top-level `xr-scene', which is the parent that holds all of the `xr-iframes`.
 ```js
   // Import exokit-web
   import('https://web.exokit.org/src/index.js')
   .then(() => {
-    // Create xr-iframe, define src attribute, and append/place it wherever you want as if it was a normal canvas
-    const xrIframe = document.createElement('xr-iframe');
-    xrIframe.src = 'child.html';
-    document.body.appendChild(xrIframe);
+    // Create xr-scene, define src attribute, and append/place it wherever you want as if it was a normal canvas
+    const xrScene = document.createElement('xr-scene');
+    xrScene.src = 'child.html';
+    document.body.appendChild(xrScene);
   });
 ```
 
 Top level XR entry:
+
 ```js
 const enterXrButton = document.getElementById('enter-xr-button');
 enterXrButton.addEventListener('click', () => {
-  xrIframe.enterXr();
+  xrScene.enterXr();
 });
 ```
 
 ## xr-iframe manipulation
+
+Manipulate the `xr-iframe` attributes: `position`, `orientation` and `scale`:
 
 ```js
   // Set xr-iframe position, from any array
@@ -43,7 +48,7 @@ enterXrButton.addEventListener('click', () => {
 
 ## Child xr-iframe creation
 
-// Create WebGL renderer and define layers
+Create WebGL renderer and define layers:
 
 ```js
   const renderer = new THREE.WebGLRenderer({
@@ -53,7 +58,7 @@ enterXrButton.addEventListener('click', () => {
   const layers = [renderer.domElement];
 ```
 
-Enter xr
+Enter XR:
 
 ```js
 const _enterXr = async () => {
@@ -89,7 +94,8 @@ const _enterXr = async () => {
 };
 ```
 
-Create xr-iframe, define src attribute, and push to layers
+Create xr-iframe, define src attribute, and push to layers:
+
 ```js
   xrIframe = document.createElement('xr-iframe');
   xrIframe.src = 'childschild.html';
