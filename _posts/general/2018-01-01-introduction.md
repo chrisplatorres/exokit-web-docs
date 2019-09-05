@@ -3,6 +3,7 @@ date: 2018-01-01
 title: Introduction
 description: Exokit Engine
 redirect_from:
+  - /introduction
   - /docs
   - /docs/
 categories:
