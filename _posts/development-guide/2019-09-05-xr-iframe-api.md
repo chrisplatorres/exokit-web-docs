@@ -13,7 +13,7 @@ This page will cover how to create and manipulate reality tabs (`xr-iframe`).
 ## Top-level creation
 ```js
   // Import exokit-web
-  import('https://web.exokit.org/src/index.js'))
+  import('https://web.exokit.org/src/index.js')
   .then(() => {
     // Create xr-iframe, define src attribute, and append/place it wherever you want as if it was a normal canvas
     const xrIframe = document.createElement('xr-iframe');
