@@ -35,25 +35,54 @@ This page will cover how to create and manipulate reality tabs (`xr-iframe`).
 
 ## Child xr-iframe creation
 
+// Create WebGL renderer and define layers
+
 ```js
-  // Create WebGL renderer and define layers
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
   });
   document.body.appendChild(renderer.domElement);
   const layers = [renderer.domElement];
+```
 
-...
+Enter xr
 
-  // Request WebXR session and assign session layers
+```js
+const _enterXr = async () => {
   const session = await navigator.xr.requestSession({
     exclusive: true,
   });
   session.layers = layers;
 
-...
+  session.requestAnimationFrame((timestamp, frame) => {
+    renderer.vr.setSession(session, {
+      frameOfReferenceType: 'stage',
+    });
 
-  // Create xr-iframe, define src attribute, and push to layers
+    const pose = frame.getViewerPose();
+    const viewport = session.baseLayer.getViewport(pose.views[0]);
+    const height = viewport.height;
+    const fullWidth = (() => {
+      let result = 0;
+      for (let i = 0; i < pose.views.length; i++) {
+        result += session.baseLayer.getViewport(pose.views[i]).width;
+      }
+      return result;
+    })();
+    renderer.setSize(fullWidth, height);
+    renderer.setPixelRatio(1);
+
+    renderer.setAnimationLoop(null);
+
+    renderer.vr.enabled = true;
+    renderer.vr.setSession(session);
+    renderer.vr.setAnimationLoop(animate);
+  });
+};
+```
+
+Create xr-iframe, define src attribute, and push to layers
+```js
   xrIframe = document.createElement('xr-iframe');
   xrIframe.src = 'childschild.html';
   layers.push(xrIframe);
