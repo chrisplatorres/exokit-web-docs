@@ -17,7 +17,9 @@ This page covers any browsers requirements needed before running Exokit Web.
 The [WebXR Device API](https://github.com/immersive-web/webxr/blob/master/explainer.md) provides access to input and output capabilities commonly associated with Virtual Reality (VR) and Augmented Reality (AR) devices. It allows you develop and host VR and AR experiences on the web. Browsers must have WebVR or WebXR compatibility to enter XR mode on Exokit Web.
 
 # Chrome
-To run Exokit Web with Chrome, you must run Chrome 66 and later, disable the `chrome://flags/#xr-sandbox` flag. (The URL must be entered manually.)
+To run Exokit Web with Chrome, you must run Chrome 66 and later.
+
+If you are entering XR mode, disable the `chrome://flags/#xr-sandbox` flag. (The URL must be entered manually.)
 
 If you are using an **OpenVR** headset, enable the `chrome://flags/#openvr` flag.
 
