@@ -18,11 +18,3 @@ The [WebXR Device API](https://github.com/immersive-web/webxr/blob/master/explai
 
 # Chrome
 To run Exokit Web with Chrome, you must run Chrome 66 and later, enable the `chrome://flags/#webxr` flag and disable the `chrome://flags/#xr-sandbox` flag. (The URL must be entered manually.)
-
-# Firefox
-Using Exokit Web in Firefox, you may get the error in console: `ReferenceError: SharedArrayBuffer is not defined`.
-
-Per Mozilla [SharedArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer) is disabled in Firefox due to Spectre, but, re-enabled in Chrome since ~v67.
-
-To fix:
-Open the `about:config` page in Firefox and set the `javascript.options.shared_memory` value to `true`.
