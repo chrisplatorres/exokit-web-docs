@@ -1,7 +1,7 @@
 .newsletter {
   padding: 64px 24px;
   background-color: #f2f2f5;
-  background-image: url("../images/footer-bg-mobile.png");
+  // background-image: url("../images/footer-bg-mobile.png");
   background-size: 100%;
   background-position: center bottom;
   background-repeat: no-repeat;
@@ -9,6 +9,11 @@
   position: relative;
   border-radius: 8px;
   margin: 60px 0 16px;
+  z-index: 3;
+
+  .mc_embed_signup {
+    z-index: 1;
+  }
 
   .newsletter__form-sent {
     opacity: 0;
@@ -121,7 +126,7 @@
 
 @media #{$tablet} {
   .newsletter {
-    background-image: url("../images/footer-bg-desktop.png");
+    // background-image: url("../images/footer-bg-desktop.png");
     background-size: 460px;
 
     &.sent {

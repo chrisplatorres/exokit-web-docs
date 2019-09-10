@@ -2,9 +2,9 @@
 # Site
 
 title: Exokit
-url: "https://exokit.org"
+url: "https://docs.exokit.org"
 ? baseurl
-#google_analytics_key: UA-63691338-8
+google_analytics_key: UA-147519548-1
 ? disqus_shortname
 ? newsletter_action
 # segment_write_key: ZHLrnVct1IQCx7yLeOzxSic7G1Duy0HH
