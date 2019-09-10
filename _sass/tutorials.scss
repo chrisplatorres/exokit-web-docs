@@ -64,7 +64,7 @@
       counter-reset: li;
 
       li::before {
-        content: counter(li);
+        // content: counter(li);
         counter-increment: li;
         font-size: inherit;
         font-weight: 500;
