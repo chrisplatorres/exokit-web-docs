@@ -1,14 +1,14 @@
 ---
-title: Reality Tabs Overview
-description: Learn what reality tabs are from a high-level overview.
+title: XR Iframe Overview
+description: Learn what XR Iframes' are from a high-level overview.
 categories:
   - development-guide
 type: Document
 set: development-guide
-set_order: 16
+set_order: 22
 ---
 
-Reality Tabs are `xr-iframes` which are like `iframes` but will extra spatial attributes like `position`, `scale`, `orientation`.
+XR Iframes (`xr-iframes`) are like `iframes` but with extra spatial attributes like `position`, `scale`, `orientation`.
 
 ### iframe
 
@@ -28,16 +28,18 @@ Example:
 
 ### Position
 
+<div style="width: 100%; height: 400px; overflow: hidden"> <img alt="Manipulating A-Blast and Solar System sites loaded together" target="_blank" src="https://user-images.githubusercontent.com/29695350/64731510-fc0ed180-d4a6-11e9-87d5-b76c36c51aea.gif"> </div>
+
 Positioning an `iframe` on a 2d webpage only has 2 ways to move: up and down & left and right. In the 3d web, there is an additional `z` coordinate.
 
-`xr-iframe` has an additional `position` attirbute, which allows creators to set where the `xr-iframe` site is in virtual space.
+`xr-iframe` has an additional `position` attribute, which allows creators to set where the `xr-iframe` site is in virtual space.
 
 It looks something like this:
 `xrIframe.positon = [x, y, z]`
 
 ### Orientation
 
-`xr-iframe` has an additional `orientation` attirbute, which allows creators to set the rotational direction of the site in virtual space.
+`xr-iframe` has an additional `orientation` attribute, which allows creators to set the rotational direction of the site in virtual space.
 
 It looks something like this using threejs:
 `xrIframe.orientation = new THREE.Quaternion().setFromEuler(new THREE.Euler(1, 1, 1, 'YXZ')).toArray()`

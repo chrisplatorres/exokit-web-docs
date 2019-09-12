@@ -1,7 +1,7 @@
 
 # Let’s build the metaverse together
 
-Reality Tabs are `xr-iframes` which are like `iframes` but will extra spatial attributes like `position`, `scale`, `orientation`
+XR Iframes (`xr-iframes`) are like `iframes` but with extra spatial attributes like `position`, `scale`, `orientation`
 
 ## Top-level creation
 ```js
