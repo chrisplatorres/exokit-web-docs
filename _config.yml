@@ -1,7 +1,7 @@
 # ----
 # Site
 
-title: Exokit
+title: Exokit Web
 url: "https://docs.exokit.org"
 ? baseurl
 google_analytics_key: UA-147624282-1
@@ -23,13 +23,13 @@ press_url: 'https://docs.exokit.org/'
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /images/favicon.png
-description: Exokit Documentation
+description: Exokit Web Documentation
 author:
-  name: Exokit
+  name: Exokit Web
   email: hello@webmr.io
   twitter: exokitxr
 social:
-  name: Exokit Documentation
+  name: Exokit Web Documentation
   links:
     - https://github.com/exokitxr/exokit-web-docs
 
