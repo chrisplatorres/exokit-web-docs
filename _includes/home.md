@@ -3,6 +3,8 @@
 
 *Exokit Web* is a meta-engine for composing multiple WebXR apps in web page. It works in all web browsers, VR and AR headsets, and has no dependencies.
 
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/COhmahoC2Mg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
 <div class="shortcuts">
   <a href="https://web.exokit.org/">
     <div>
@@ -23,6 +25,8 @@
     </div>
   </a>
 </div>
+
+
 
 
 Exokit Web can load sites made with any WebXR engine -- THREE.js, A-Frame, Babylon.js, JanusWeb, Unity.
