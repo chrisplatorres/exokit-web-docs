@@ -14,13 +14,14 @@ This page will cover how to create and manipulate XR iframes (`xr-iframe`).
 
 Create the top-level `xr-scene`, which is the parent that holds all of the `xr-iframes`.
 ```js
-  // Import exokit-web
-  import('https://web.exokit.org/ew.js');
-
+// Import exokit-web
+// replace API_KEY if accessing web origins, otherwise remove
+import('https://web.exokit.org/ew.js?key=API_KEY')
+.then(async () => {
   // Create top-level xr-scene, define src attribute, and append/place it wherever you want as if it were a normal canvas
-  const xrScene = document.createElement('xr-scene');
+  xrScene = document.createElement('xr-scene');
   xrScene.src = 'app.html';
-  document.body.appendChild(xrScene);
+  });
 ```
 *Note: you can also import as a script tag:*
 ```html
@@ -54,26 +55,40 @@ See the example [`index.html`](https://github.com/exokitxr/exokit-web/blob/maste
 # Child app.html xr-iframe creation
 
 ```js
-// Create WebXR session
-session = await navigator.xr.requestSession('immersive-vr');
+const layers = [];
 
-// Add Mozilla Hub
-fooFrame = document.createElement('xr-iframe');
-fooFrame.src = 'https://hubs.mozilla.com/VxGmqjU/fuchsia-winding-room?vr_entry_type=vr_now';
-session.layers.push(fooFrame);
+const _enterXr = async () => {
+  // Create WebXR session
+  const session = await navigator.xr.requestSession({
+    exclusive: true,
+  });
+  session.layers = layers;
+  session.requestAnimationFrame((timestamp, frame) => {
+    renderer.vr.setSession(session, {
+      frameOfReferenceType: 'stage',
+    });
+  });
+};
 
-// Add A-Painter too
-barFrame = document.createElement('xr-iframe');
-barFrame.src = 'https://aframe.io/a-painter';
-session.layers.push(barFrame);
+_enterXr()
+.then(() => {
+  // Add Mozilla Hub
+  fooFrame = document.createElement('xr-iframe');
+  fooFrame.src = 'https://hubs.mozilla.com/VxGmqjU/fuchsia-winding-room?vr_entry_type=vr_now';
+  session.layers.push(fooFrame);
 
-// Set the xr-iframe position, from any array
-barFrame.position = [1, 1, 1];
-// Set the xr-iframe orientation
-barFrame.orientation = new THREE.Quaternion().setFromEuler(new THREE.Euler(1, 1, 1, 'YXZ')).toArray();
-// Set the xr-iframe scale
-barFrame.scale = [1, 1, 1];
+  // Add A-Painter too
+  barFrame = document.createElement('xr-iframe');
+  barFrame.src = 'https://aframe.io/a-painter';
+  session.layers.push(barFrame);
 
+  // Set the xr-iframe position, from any array
+  barFrame.position = [1, 1, 1];
+  // Set the xr-iframe orientation
+  barFrame.orientation = new THREE.Quaternion().setFromEuler(new THREE.Euler(1*Math.PI, 1*Math.PI, 1*Math.PI, 'YXZ')).toArray();
+  // Set the xr-iframe scale
+  barFrame.scale = [1, 1, 1];
+})
 ```
 
 See the example [`app.html`](https://github.com/exokitxr/exokit-web/blob/master/app.html) in GitHub for a full example.
