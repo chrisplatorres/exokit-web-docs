@@ -17,9 +17,6 @@ Create the top-level `xr-scene`, which is the parent that holds all of the `xr-i
   // Import exokit-web
   import('https://web.exokit.org/ew.js');
 
-  // Import sw.js
-  importScripts('https://web.exokit.org/sw.js');
-
   // Create top-level xr-scene, define src attribute, and append/place it wherever you want as if it were a normal canvas
   const xrScene = document.createElement('xr-scene');
   xrScene.src = 'app.html';
@@ -37,6 +34,12 @@ const enterXrButton = document.getElementById('enter-xr-button');
 enterXrButton.addEventListener('click', () => {
   xrScene.enterXr();
 });
+```
+
+In the *top-level directory of your app*, create a file named `sw.js` with these contents:
+
+```js
+importScripts('https://web.exokit.org/sw.js');
 ```
 
 Finally, make sure you are serving your app over `https://` (or `localhost`), which is [required for Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/#you_need_https).
