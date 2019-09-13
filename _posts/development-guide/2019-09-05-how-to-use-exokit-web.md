@@ -8,7 +8,7 @@ set: development-guide
 set_order: 21
 ---
 
-This page will cover how to create and manipulate XR iframes (`xr-iframe`).
+This page will cover how to create and manipulate XR iframes (`xr-iframe`). You can view the full [boilerplate code on GitHub](https://github.com/exokitxr/exokit-web/tree/master/boilerplate).
 
 # Top-level index.html creation
 
