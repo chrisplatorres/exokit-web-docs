@@ -1,7 +1,7 @@
 # Exokit Web, the web metaverse engine
 
 
-*Exokit Web* is a meta-engine for composing multiple WebXR apps in web page. It works in all web browsers, VR and AR headsets, and has no dependencies.
+*Exokit Web* is a meta-engine for composing multiple WebXR apps in a web page. It works in all web browsers, VR and AR headsets, and has no dependencies.
 
 <p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/COhmahoC2Mg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
@@ -12,7 +12,7 @@
       <div class="description">Try the Exokit Web demo.</div>
     </div>
   </a>
-  <a href="{{ site.baseurl }}{% post_url /development-guide/2019-09-05-xr-iframe-api %}">
+  <a href="{{ site.baseurl }}{% post_url /development-guide/2019-09-05-how-to-use-exokit-web %}">
     <div>
       <div class="title">Get Started</div>
       <div class="description">A guide on how to use Exokit Web.</div>
