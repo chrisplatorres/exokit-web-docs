@@ -8,90 +8,75 @@ set: development-guide
 set_order: 21
 ---
 
-This page will cover how to create and manipulate XR iframes (`xr-iframe`). You can view the full [boilerplate code on GitHub](https://github.com/exokitxr/exokit-web/tree/master/boilerplate).
+This page will cover how to create a standalone page with XR iframes (`xr-iframe`). You can view the full [boilerplate code on GitHub](https://github.com/exokitxr/exokit-web/tree/master/boilerplate).
 
-# Top-level index.html creation
+# Exokit Web v2
 
-Create the top-level `xr-scene`, which is the parent that holds all of the `xr-iframes`.
-```js
-// Import exokit-web
-// replace API_KEY if accessing web origins, otherwise remove
-import('https://web.exokit.org/ew.js?key=API_KEY')
-.then(async () => {
-  // Create top-level xr-scene, define src attribute, and append/place it wherever you want as if it were a normal canvas
-  xrScene = document.createElement('xr-scene');
-  xrScene.src = 'app.html';
-  });
-```
-*Note: you can also import as a script tag:*
+Exokit Web v2 is an update to exokit-web, simplifying the code needed to get started.
+
+![](https://i.imgur.com/i2nFvgQ.png)
+
+## Elements
+
+### <xr-engine>
+
+`<xr-engine>` is the instance of the engine running in the browser. It acts as a `<canvas>` for the WebXR in your scene.
+
+**5 different ways to make:**
+
+<b>1.</b> Declare it in the HTML raw: `<xr-engine>code</xr-engine>`
+<br>
+<b>2.</b> Declare it in the HTML src'd: `<xr-engine src=app.html></xr-engine>`
+<br>
+<b>3.</b> Declare it as a template: `<template is=xr-engine-template>code</template>`
+<br>
+<b>4.</b> `document.createElement('xr-engine');`
+<br>
+<b>5.</b> `xrEngine = new XREngine(); document.body.appendChild(xrEngine);`
+
+
 ```html
-<script type=module src="https://web.exokit.org/ew.js"></script>
+const xrEngine = new XREngine();
+xrEngine.innerHTML = '<xr-site></xr-site>';
+document.body.appendChild(xrEngine);
+xrEngine.enterXr();
 ```
 
-Create the top-level `xr-scene` XR entry button:
+Everything in `xr-engine` runs in an isolated `<iframe>` context, so the HTML inside cannot see the top `window`.
 
-```js
-const enterXrButton = document.getElementById('enter-xr-button');
-enterXrButton.addEventListener('click', () => {
-  xrScene.enterXr();
-});
+That also means if you want to inline things like `<scipt>` tags in your `<xr-engine>` declaration, you need to use the `<template is=xr-engine-template>` variant which uses the standard [HTML Template Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). This tells the browser to _not_ immediately run your code as it's parsed, which is the default behavior.
+
+### <xr-site>
+
+This lives inside `<xr-engine>` and defines your XR site. It handles things like setting up the WebXR session and can also control the virtual camera.
+
+```html
+<xr-site camera-position="0 1.6 3">
+  <xr-iframe src="webxr-site.html"></xr-iframe>
+</xr-site>
+<script>
+const xrSite = document.querySelector('xr-site');
+xrSite.cameraPosition = [1, 1, 1];
+const session = await xrSite.requestSession(); // get the WebXR session that xr-site auto-created
+xrSite.layers.push(canvas); // add a locally-rendered WebGL canvas (such as from THREE.js) as an additional layer
+</script>
 ```
 
-In the *top-level directory of your app*, create a file named `sw.js` with these contents:
+`xr-site` is optional; it handles the work of setting up a WebXR session, but you can make the WebXR session yourself and attach `<xr-iframe>` to it manually. This might be necessary if you want to integrate Exokit Web with another Engine, like A-Frame or Babylon.
 
-```js
-importScripts('https://web.exokit.org/sw.js');
+### <xr-iframe>
+
+This lives in `<xr-site>` and represents a layer of reality rendered in the world. When you attach it to `xr-site`, it will automatically display in the WebXR session.
+
+`xr-iframe` can be offset in the world with HTML attributes.
+
+```html
+<xr-iframe src="webxr-site.html" position="0 0 0"></xr-iframe>
 ```
 
-Finally, make sure you are serving your app over `https://` (or `localhost`), which is [required for Service Workers](https://developers.google.com/web/fundamentals/primers/service-workers/#you_need_https).
+## Recursion
 
-If your app is limited to your own site (same origin), you're done!
-
-If your app accesses other sites (i.e. [CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)), the above will not work. If you wish to access web origins, you will need to [request an API key](#cross-origin-setup).
-
-See the example [`index.html`](https://github.com/exokitxr/exokit-web/blob/master/index.html) in GitHub for a full example.
-
-
-# Child app.html xr-iframe creation
-
-```js
-const layers = [];
-
-const _enterXr = async () => {
-  // Create WebXR session
-  const session = await navigator.xr.requestSession({
-    exclusive: true,
-  });
-  session.layers = layers;
-  session.requestAnimationFrame((timestamp, frame) => {
-    renderer.vr.setSession(session, {
-      frameOfReferenceType: 'stage',
-    });
-  });
-};
-
-_enterXr()
-.then(() => {
-  // Add Mozilla Hub
-  fooFrame = document.createElement('xr-iframe');
-  fooFrame.src = 'https://hubs.mozilla.com/VxGmqjU/fuchsia-winding-room?vr_entry_type=vr_now';
-  session.layers.push(fooFrame);
-
-  // Add A-Painter too
-  barFrame = document.createElement('xr-iframe');
-  barFrame.src = 'https://aframe.io/a-painter';
-  session.layers.push(barFrame);
-
-  // Set the xr-iframe position, from any array
-  barFrame.position = [1, 1, 1];
-  // Set the xr-iframe orientation
-  barFrame.orientation = new THREE.Quaternion().setFromEuler(new THREE.Euler(1*Math.PI, 1*Math.PI, 1*Math.PI, 'YXZ')).toArray();
-  // Set the xr-iframe scale
-  barFrame.scale = [1, 1, 1];
-})
-```
-
-See the example [`app.html`](https://github.com/exokitxr/exokit-web/blob/master/app.html) in GitHub for a full example.
+Because `<xr-engine>` and `<xr-site>` are WebXR sites, you can put them inside `<xr-iframe>`. It works like you'd expect: [recursively](https://docs.exokit.org/development-guide/how-to-use-exokit-web/#Recursion).
 
 # Cross-origin setup
 
