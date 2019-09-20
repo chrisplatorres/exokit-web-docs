@@ -10,73 +10,33 @@ set_order: 21
 
 This page will cover how to create a standalone page with XR iframes (`xr-iframe`). You can view the full [boilerplate code on GitHub](https://github.com/exokitxr/exokit-web/tree/master/boilerplate).
 
-# Exokit Web v2
+# The Basics
 
-Exokit Web v2 is an update to exokit-web, simplifying the code needed to get started.
+## index.html  
+This is the most simple code to get started. This loads the Solar System WebXR demo and A-Painter. It also sets up an "Enter XR" button to be able to enter the site in immersive mode.
 
-![](https://i.imgur.com/i2nFvgQ.png)
-
-## Elements
-
-### <xr-engine>
-
-`<xr-engine>` is the instance of the engine running in the browser. It acts as a `<canvas>` for the WebXR in your scene.
-
-**5 different ways to make:**
-
-<b>1.</b> Declare it in the HTML raw: `<xr-engine>code</xr-engine>`
-<br>
-<b>2.</b> Declare it in the HTML src'd: `<xr-engine src=app.html></xr-engine>`
-<br>
-<b>3.</b> Declare it as a template: `<template is=xr-engine-template>code</template>`
-<br>
-<b>4.</b> `document.createElement('xr-engine');`
-<br>
-<b>5.</b> `xrEngine = new XREngine(); document.body.appendChild(xrEngine);`
-
-
-```html
-const xrEngine = new XREngine();
-xrEngine.innerHTML = '<xr-site></xr-site>';
-document.body.appendChild(xrEngine);
-xrEngine.enterXr();
+```html  
+<html>
+<body>
+  <input type="button" value="Enter XR" onclick="document.getElementById('xr-engine').enterXr();">
+  <script type="module" src="https://web.exokit.org/ew.js"></script>
+  <xr-engine>
+    <xr-site>
+      <xr-iframe src="https://exokitxr.github.io/webxr-samples/xr-presentation.html"></xr-iframe>
+      <xr-iframe src="https://aframe.io/a-painter/"></xr-iframe>
+    </xr-site>
+  </xr-engine>
+</body>
+</html>
 ```
 
-Everything in `xr-engine` runs in an isolated `<iframe>` context, so the HTML inside cannot see the top `window`.
 
-That also means if you want to inline things like `<scipt>` tags in your `<xr-engine>` declaration, you need to use the `<template is=xr-engine-template>` variant which uses the standard [HTML Template Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template). This tells the browser to _not_ immediately run your code as it's parsed, which is the default behavior.
+## sw.js
+The service worker loaded by the browser points to use Exokit Web's `sw.js`.
 
-### <xr-site>
-
-This lives inside `<xr-engine>` and defines your XR site. It handles things like setting up the WebXR session and can also control the virtual camera.
-
-```html
-<xr-site camera-position="0 1.6 3">
-  <xr-iframe src="webxr-site.html"></xr-iframe>
-</xr-site>
-<script>
-const xrSite = document.querySelector('xr-site');
-xrSite.cameraPosition = [1, 1, 1];
-const session = await xrSite.requestSession(); // get the WebXR session that xr-site auto-created
-xrSite.layers.push(canvas); // add a locally-rendered WebGL canvas (such as from THREE.js) as an additional layer
-</script>
+```js
+importScripts('https://web.exokit.org/sw.js');
 ```
-
-`xr-site` is optional; it handles the work of setting up a WebXR session, but you can make the WebXR session yourself and attach `<xr-iframe>` to it manually. This might be necessary if you want to integrate Exokit Web with another Engine, like A-Frame or Babylon.
-
-### <xr-iframe>
-
-This lives in `<xr-site>` and represents a layer of reality rendered in the world. When you attach it to `xr-site`, it will automatically display in the WebXR session.
-
-`xr-iframe` can be offset in the world with HTML attributes.
-
-```html
-<xr-iframe src="webxr-site.html" position="0 0 0"></xr-iframe>
-```
-
-## Recursion
-
-Because `<xr-engine>` and `<xr-site>` are WebXR sites, you can put them inside `<xr-iframe>`. It works like you'd expect: [recursively](#recursion).
 
 # Cross-origin setup
 
