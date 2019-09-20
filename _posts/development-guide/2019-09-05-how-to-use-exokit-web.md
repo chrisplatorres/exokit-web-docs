@@ -76,7 +76,7 @@ This lives in `<xr-site>` and represents a layer of reality rendered in the worl
 
 ## Recursion
 
-Because `<xr-engine>` and `<xr-site>` are WebXR sites, you can put them inside `<xr-iframe>`. It works like you'd expect: [recursively](https://docs.exokit.org/development-guide/how-to-use-exokit-web/#Recursion).
+Because `<xr-engine>` and `<xr-site>` are WebXR sites, you can put them inside `<xr-iframe>`. It works like you'd expect: [recursively](#recursion).
 
 # Cross-origin setup
 
