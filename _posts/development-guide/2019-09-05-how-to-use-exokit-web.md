@@ -82,6 +82,7 @@ Because `<xr-engine>` and `<xr-site>` are WebXR sites, you can put them inside `
 
 To access web origins Exokit Web can use a proxy. This requires setting an API key.
 
+*note: you do not need an API key to [access the proxy on localhost via dev.exokit.org](https://github.com/exokitxr/exokit-web/blob/master/index.js#L11-L17).*
 ## 1. Get an API key
 
 API keys are used to whitelist your domain on the proxy, and are free. Get one in our [Discord](https://discord.gg/zgYEJgS).
