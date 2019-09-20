@@ -35,12 +35,12 @@ Exokit Web v2 is an update to exokit-web, simplifying the code needed to get sta
 <b>5.</b> `xrEngine = new XREngine(); document.body.appendChild(xrEngine);`
 
 
-    ```html
-    const xrEngine = new XREngine();
-    xrEngine.innerHTML = '<xr-site></xr-site>';
-    document.body.appendChild(xrEngine);
-    xrEngine.enterXr();
-    ```
+```html
+const xrEngine = new XREngine();
+xrEngine.innerHTML = '<xr-site></xr-site>';
+document.body.appendChild(xrEngine);
+xrEngine.enterXr();
+```
 
 Everything in `xr-engine` runs in an isolated `<iframe>` context, so the HTML inside cannot see the top `window`.
 
