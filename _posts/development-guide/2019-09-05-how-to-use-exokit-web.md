@@ -92,7 +92,7 @@ xrSite.layers.push(canvas); // add a locally-rendered WebGL canvas (such as from
 
 `xr-site` handles the work of setting up a WebXR session for your site. `xr-site` is optional; you can still make the WebXR session yourself, or have that handled by your WebXR framework such as THREE.js, A-Frame, or Babylon.js.
 
-(Psst: if you write a component that does this, we would love it if you submitted it as a PR to [https://github.com/exokitxr/exokit-web](our GitHub repo)!)
+(Psst: if you write a component that does this, we would love it if you submitted it as a PR to [our GitHub repo!](https://github.com/exokitxr/exokit-web))
 
 ------------------
 
