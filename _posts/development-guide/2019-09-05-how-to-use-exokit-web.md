@@ -139,20 +139,3 @@ The service worker loaded by the browser points to use Exokit Web's `sw.js`.
 ```js
 importScripts('https://web.exokit.org/sw.js');
 ```
-
-# Cross-origin setup
-
-To access web origins Exokit Web can use a proxy. This requires setting an API key.
-
-*note: you do not need an API key to [access the proxy on localhost via dev.exokit.org](https://github.com/exokitxr/exokit-web/blob/master/index.js#L11-L17).*
-## 1. Get an API key
-
-API keys are used to whitelist your domain on the proxy, and are free. Get one in our [Discord](https://discord.gg/zgYEJgS).
-
-## 2. Add API key
-
-Add your API key to your Exokit Web import:
-
-```html
-<script type=module src="https://web.exokit.org/ew.js?key=YOUR_API_KEY_HERE"></script>
-```
